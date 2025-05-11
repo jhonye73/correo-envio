@@ -18,6 +18,15 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+app.get('/', (req, res) => {
+  res.send('Servidor de envío de correos activo.');
+});
+app.use((req, res, next) => {
+  res.setHeader("Content-Security-Policy", "default-src 'self'; font-src 'self' https: data:; script-src 'self'; style-src 'self' 'unsafe-inline';");
+  next();
+});
+
+
 app.post("/enviar-correo", async (req, res) => {
   const { correos } = req.body;
 
@@ -41,4 +50,3 @@ app.post("/enviar-correo", async (req, res) => {
 app.listen(3001, () => {
   console.log("Servidor corriendo en http://localhost:3001");
 });
-
