@@ -1,7 +1,7 @@
 {
   "name": "correo-servidor",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "reaparar.js",
   "type": "module"
 
   "scripts": {
