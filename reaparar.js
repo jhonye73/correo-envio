@@ -35,6 +35,7 @@ app.post("/", async (req, res) => {
     to: correos.join(","),
     subject: subject || "Sin asunto",
     text: text || "Sin mensaje",
+    html: "<p><strong>Hola</strong>, este es un <em>correo masivo</em> con Nodemailer usando <code>import</code>.</p>",
      };
 
   try {
