@@ -30,12 +30,12 @@ app.use((req, res, next) => {
 app.post("/", async (req, res) => {
   const { correos } = req.body;
 
-  const mailOptions = {
+   const mailOptions = {
     from: '"SIP PILGRIM" <sippilgrim@gmail.com>',
     to: correos.join(","),
-    subject: "Correo masivo con Nodemailer",
-    text: "Hola, este es un correo masivo con Nodemailer usando import.",
-    html: "<p><strong>Hola</strong>, este es un <em>correo masivo</em> con Nodemailer usando <code>import</code>.</p>",
+    subject: subject || "Sin asunto",
+    text: text || "Sin mensaje",
+    html: html || "<p>Sin HTML</p>",
   };
 
   try {
