@@ -27,16 +27,19 @@ app.use((req, res, next) => {
 });
 
 
-app.post("/", async (req, res) => {
-  const { correos } = req.body;
+app.post("/enviar-correo", async (req, res) => {
+ 
+
+  const { correos, subject, text, html } = req.body;
 
   const mailOptions = {
-    from: '"jhonny" <sippilgrim@gmail.com>',
+    from: '"SIP PILGRIM" <sippilgrim@gmail.com>',
     to: correos.join(","),
-    subject: "Correo masivo con Nodemailer",
-    text: "Hola, este es un correo masivo con Nodemailer usando import.",
-    html: "<p><strong>Hola</strong>, este es un <em>correo masivo</em> con Nodemailer usando <code>import</code>.</p>",
+    subject: subject || "Sin asunto",
+    text: text || "Sin mensaje",
+    html: html || "<p>Sin HTML</p>",
   };
+  
 
   try {
     const info = await transporter.sendMail(mailOptions);
@@ -50,4 +53,5 @@ app.post("/", async (req, res) => {
 app.listen(3001, () => {
   console.log("Servidor corriendo en http://localhost:3001");
 });
+
 
