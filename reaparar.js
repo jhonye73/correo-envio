@@ -35,7 +35,9 @@ app.post("/", async (req, res) => {
     to: correos.join(","),
     subject: subject || "Sin asunto",
     text: text || "Sin mensaje",
-    html: "<html>
+    html: html: `
+<!DOCTYPE html>
+<html>
   <head>
     <meta charset="UTF-8" />
     <style>
@@ -80,7 +82,9 @@ app.post("/", async (req, res) => {
       <p><strong>AVISO DE CONFIDENCIALIDAD:</strong> Este mensaje es privado y confidencial. Si lo recibiste por error, por favor notifícanos y elimínalo de tu sistema.</p>
     </div>
   </body>
-</html>",
+</html>
+`
+,
      };
 
   try {
