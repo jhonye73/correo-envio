@@ -28,7 +28,7 @@ app.use((req, res, next) => {
 
 
 app.post("/", async (req, res) => {
-  const { correos } = req.body;
+  const { correos, subject, text, html } = req.body;
 
    const mailOptions = {
     from: '"SIP PILGRIM" <sippilgrim@gmail.com>',
