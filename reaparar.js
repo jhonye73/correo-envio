@@ -1,15 +1,15 @@
-const express = require("express");
-const cors = require("cors");
-const nodemailer = require("nodemailer");
+// enviarCorreos.js
+import nodemailer from "nodemailer";
+
+// backend/sendEmail.js
+import express from "express";
+
+import cors from "cors";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.post("/enviar-correo", async (req, res) => {
-  const { correos } = req.body;
-
-  try {
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -18,22 +18,36 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-    for (const correo of correos) {
-      await transporter.sendMail({
-        from: '"Sistema" <tucorreo@gmail.com>',
-        to: correo,
-        subject: "Correo masivo desde Node.js",
-        text: "¡Este es un correo enviado automáticamente!",
-      });
-    }
+app.get('/', (req, res) => {
+  res.send('Servidor de envío de correos activo.');
+});
+app.use((req, res, next) => {
+  res.setHeader("Content-Security-Policy", "default-src 'self'; font-src 'self' https: data:; script-src 'self'; style-src 'self' 'unsafe-inline';");
+  next();
+});
 
-    res.json({ success: true });
-  } catch (err) {
-    console.error("Error al enviar:", err);
-    res.status(500).json({ success: false, error: err.message });
+
+app.post("/", async (req, res) => {
+  const { correos } = req.body;
+
+  const mailOptions = {
+    from: '"jhonny" <sippilgrim@gmail.com>',
+    to: correos.join(","),
+    subject: "Correo masivo con Nodemailer",
+    text: "Hola, este es un correo masivo con Nodemailer usando import.",
+    html: "<p><strong>Hola</strong>, este es un <em>correo masivo</em> con Nodemailer usando <code>import</code>.</p>",
+  };
+
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    res.status(200).json({ success: true, response: info.response });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ success: false, error });
   }
 });
 
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => console.log(`Servidor corriendo en puerto ${PORT}`));
+app.listen(3001, () => {
+  console.log("Servidor corriendo en http://localhost:3001");
+});
 
