@@ -35,7 +35,7 @@ app.post("/", async (req, res) => {
     to: correos.join(","),
     subject: subject || "Sin asunto",
     text: text || "Sin mensaje",
-    html: html: `
+    html:`
 <!DOCTYPE html>
 <html>
   <head>
