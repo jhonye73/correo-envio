@@ -33,7 +33,7 @@ app.post("/enviar-correo", async (req, res) => {
   const mailOptions = {
     from: '"SIP PILGRIM" <sippilgrim@gmail.com>',
     to: correos.join(","),
-    subject: "revisa ya",
+    subject: "Correo masivo con Nodemailer",
     text: "Hola, este es un correo masivo con Nodemailer usando import.",
     html: "<p><strong>Hola</strong>, este es un <em>correo masivo</em> con Nodemailer usando <code>import</code>.</p>",
   };
@@ -50,4 +50,6 @@ app.post("/enviar-correo", async (req, res) => {
 app.listen(3001, () => {
   console.log("Servidor corriendo en http://localhost:3001");
 });
+
+
 
