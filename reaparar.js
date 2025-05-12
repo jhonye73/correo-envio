@@ -35,8 +35,7 @@ app.post("/", async (req, res) => {
     to: correos.join(","),
     subject: subject || "Sin asunto",
     text: text || "Sin mensaje",
-    html: html || "<p>Sin HTML</p>",
-  };
+     };
 
   try {
     const info = await transporter.sendMail(mailOptions);
