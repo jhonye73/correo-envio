@@ -27,7 +27,7 @@ app.use((req, res, next) => {
 });
 
 
-app.post("/enviar-correo", async (req, res) => {
+app.post("/", async (req, res) => {
   const { correos } = req.body;
 
   const mailOptions = {
