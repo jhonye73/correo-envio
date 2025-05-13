@@ -61,7 +61,7 @@ const htmlFinal = `
     <style>
       body {
         font-family: Arial, sans-serif;
-        color: #333;
+        color: #00000;
         line-height: 1.5;
       }
       .footer {
