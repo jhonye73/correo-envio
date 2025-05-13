@@ -67,11 +67,11 @@ const htmlFinal = `
       .footer {
         margin-top: 30px;
         font-size: 12px;
-        color: #666;
+        color: #00000;
       }
       .emphasis {
         font-weight: bold;
-        color: #005b96;
+        color: #00000;
       }
     </style>
   </head>
@@ -87,7 +87,6 @@ const htmlFinal = `
     from: '"SIP PILGRIM" <sippilgrim@gmail.com>',
     to: correos.join(","),
     subject: subject || "Sin asunto",
-    text: text || "Sin mensaje",
     html:htmlFinal,
      };
 
